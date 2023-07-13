@@ -11,14 +11,18 @@ def csv2html(input_folder):
             html_file = os.path.join(output_folder, filename.replace(".csv", ".html"))
 
             df = pd.read_csv(csv_file, dtype=str)
-            #df['Tempo'] = df['Tempo'].map(lambda x: str(x) if pd.notnull(x) else '')
-            html_table = df.to_html(index=False, na_rep='', classes=['centered-table'], justify='left')
+            html_table = df.to_html(index=True, na_rep='', classes=['centered-table'], justify='left')
+            html_table = html_table.replace('<td>', '<td>1', 1)
 
 
             with open(html_file, 'w') as f:
                 f.write(html_table)
 
 # let's run it on all the folders
+#for ii in ["P", "I"]:
+#    for jj in ["M", "F"]:
+#        csv2html("database_ANA/assoluti/database_"+jj+"_"+ii+"_bl012/lists")
+
 for ii in ["P", "I"]:
     for jj in ["M", "F"]:
-        csv2html("database_ANA/assoluti/database_"+jj+"_"+ii+"_bl012/lists")
+        csv2html("database_ANA/assoluti/database_"+jj+"_"+ii+"_bl012/top_lists")
