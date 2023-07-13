@@ -11,9 +11,9 @@ def csv2html(input_folder):
             html_file = os.path.join(output_folder, filename.replace(".csv", ".html"))
 
             df = pd.read_csv(csv_file, dtype=str)
-            html_table = df.to_html(index=True, na_rep='', classes=['centered-table'], justify='left')
-            html_table = html_table.replace('<td>', '<td>1', 1)
+            df.insert(0, '#', range(1, len(df) + 1))  # Inserisci l'indice personalizzato nella colonna '#'
 
+            html_table = df.to_html(index=False, na_rep='', classes=['centered-table'], justify='left')
 
             with open(html_file, 'w') as f:
                 f.write(html_table)
