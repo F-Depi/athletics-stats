@@ -26,3 +26,4 @@ def csv2html(input_folder):
 for ii in ["P", "I"]:
     for jj in ["M", "F"]:
         csv2html("database_ANA/assoluti/database_"+jj+"_"+ii+"_bl012/top_lists")
+        csv2html("database_ANA/assoluti/database_"+jj+"_"+ii+"_bl012/lists")
